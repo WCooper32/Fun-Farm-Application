@@ -10,8 +10,8 @@ package main;
  *  5. Create a TestRunner Class and verify your tests run successfully.
  *  Reminder: Each individual is to complete this TODO
  *
- *  @author Bob
- *  @version 1.1
+ *  @author Alex Wing
+ *  @version 1.0
  */
 public class Person1 {
 
