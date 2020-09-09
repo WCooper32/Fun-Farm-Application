@@ -24,4 +24,8 @@ hs_err_pid*
 
 # macOS stuff
 .DS_Store
-**/.DS_Store
+**/.DS_Store=
+
+# idea stuff
+.idea/workspace.xml
+out/
