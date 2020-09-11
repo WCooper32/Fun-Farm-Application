@@ -7,10 +7,10 @@ package main;
  *       to setup your junit environment and begin creating test cases.
  *  3. Create a new directory for your tests located at M1/src/tests/person3
  *  4. Now create a TestPerson3 Class and write methods to test add, subtract, multiply and divide
- *  5. Create a TestRunner Class and verify your tests run successfully.
+ *  5. Create a tests.person3.TestRunner Class and verify your tests run successfully.
  *  Reminder: Each individual is to complete this TODO
  *
- *  @author Bob
+ *  @author William Jeffrey Cooper
  *  @version 1.1
  */
 public class Person3 {
