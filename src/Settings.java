@@ -14,6 +14,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+import javax.swing.*;
+
 public class Settings extends Application {
 
     private String name;
@@ -31,6 +33,10 @@ public class Settings extends Application {
 
         Scene scene = new Scene(root, 1280,720);
         stage.setScene(scene);
+
+        //ERROR SCREEN
+        JOptionPane errorBox = new JOptionPane();
+
 
         //TITLE
         Label title = new Label("Fun Farm");
@@ -76,9 +82,9 @@ public class Settings extends Application {
         Label lSeed = new Label("Choose Seed:");
         lSeed.setFont(Font.font(null, FontWeight.BOLD, 14));
         ToggleGroup tSeed = new ToggleGroup();
-        RadioButton bSeed1 = new RadioButton("Andrew's Lands");
+        RadioButton bSeed1 = new RadioButton("Andrew's");
         bSeed1.setToggleGroup(tSeed);
-        RadioButton bSeed2 = new RadioButton("Andrew's Mom's Lands");
+        RadioButton bSeed2 = new RadioButton("Andrew's Mom's");
         bSeed2.setToggleGroup(tSeed);
         RadioButton bSeed3 = new RadioButton("Andrew's Dad's Lands");
         bSeed3.setToggleGroup(tSeed);
@@ -89,13 +95,15 @@ public class Settings extends Application {
         Label lSeason = new Label("Choose Season:");
         lSeason.setFont(Font.font(null, FontWeight.BOLD, 14));
         ToggleGroup tSeason = new ToggleGroup();
-        RadioButton bSeason1 = new RadioButton("Andrew's Lands");
-        bSeed1.setToggleGroup(tSeason);
-        RadioButton bSeason2 = new RadioButton("Andrew's Mom's Lands");
-        bSeed2.setToggleGroup(tSeason);
-        RadioButton bSeason3 = new RadioButton("Andrew's Dad's Lands");
-        bSeed3.setToggleGroup(tSeason);
-        root.getChildren().addAll(lSeason,bSeason1,bSeason2,bSeason3);
+        RadioButton bSeason1 = new RadioButton("Spring");
+        bSeason1.setToggleGroup(tSeason);
+        RadioButton bSeason2 = new RadioButton("Summer");
+        bSeason2.setToggleGroup(tSeason);
+        RadioButton bSeason3 = new RadioButton("Fall");
+        bSeason3.setToggleGroup(tSeason);
+        RadioButton bSeason4 = new RadioButton("Winter");
+        bSeason4.setToggleGroup(tSeason);
+        root.getChildren().addAll(lSeason,bSeason1,bSeason2,bSeason3,bSeason4);
         root.setMargin(lSeason, new Insets(50,0,0,0));
 
         //CONTINUE
@@ -105,6 +113,7 @@ public class Settings extends Application {
             public void handle(ActionEvent event) {
                 if (tfName.getText().trim().equals("")) {  // empty, blank (?), or null
                     System.out.println("Handle invalid name");
+                    errorBox.showMessageDialog(null, "alert", "alert", JOptionPane.ERROR_MESSAGE);
                 } else {
                     Game game = new Game();
                     game.start(stage);
