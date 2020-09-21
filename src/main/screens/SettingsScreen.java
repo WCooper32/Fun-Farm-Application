@@ -1,11 +1,9 @@
 package main.screens;
 
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,29 +14,20 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.stage.Stage;
-import main.engine.Inventory;
 import main.engine.Manager;
-import main.engine.Settings;
-import main.screens.GameScreen;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class SettingsScreen {
-
-    public VBox root;
+public class SettingsScreen extends Screen<VBox> {
 
     public SettingsScreen(Manager manager) {
+        super(new VBox());
         System.out.println("Started settings screen");
 
-        root = new VBox();
         root.setPadding(new Insets(10, 50, 50, 50));
         root.setId("settings");
         root.getStylesheets().addAll(this.getClass().getResource("../css/style.css").toExternalForm());
-
-        //ERROR SCREEN
-        JOptionPane errorBox = new JOptionPane();
 
         //TITLE
         Label title = new Label("Fun Farm");
@@ -122,14 +111,11 @@ public class SettingsScreen {
                         }
                     });
                 } else {
-                    Settings settings = new Settings();
-                    settings.name = tfName.getText();
-                    settings.difficulty = 0; // TODO
-                    settings.season = 0; // TODO
-                    settings.seed = 0; // TODO
-
-                    manager.state.settings = settings;
-                    manager.state.inventory = new Inventory();
+                    manager.state.settings.initialized = true;
+                    manager.state.settings.name = tfName.getText();
+                    manager.state.settings.difficulty = 0; // TODO @Harrison
+                    manager.state.settings.season = 0; // TODO @Harrison
+                    manager.state.settings.seed = 0; // TODO @Harrison
                     manager.startGame();
                 }
             }

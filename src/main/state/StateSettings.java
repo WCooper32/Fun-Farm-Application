@@ -1,6 +1,8 @@
-package main.engine;
+package main.state;
 
-public class Settings {
+public class StateSettings {
+
+    public boolean initialized = false;
 
     public String name;
     public int difficulty;

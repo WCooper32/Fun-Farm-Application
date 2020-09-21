@@ -2,10 +2,12 @@ package main.screens;
 
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -13,16 +15,21 @@ import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
 import main.engine.Manager;
 
-public class StartScreen {
-
-    public VBox root;
+public class StartScreen extends Screen<VBox> {
 
     public StartScreen(Manager manager) {
-
         //PANE
-        root = new VBox();
+        super(new VBox());
         root.setId("pane");
-        root.setFillWidth(true);
+        ((VBox)root).setFillWidth(true);
+
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println("Welcome screen pressed");
+                manager.startGame();
+            }
+        });
 
         //TITLE
         Label title = new Label("Fun Farm");
