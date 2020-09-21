@@ -1,9 +1,6 @@
 package main.screens;
 
-import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 import main.engine.Manager;
 
 /**
@@ -18,6 +15,8 @@ public class GameScreen {
 
     public GameScreen(Manager manager) {
         root = new StackPane();
+
+        // Farm plots
 
         // Game Overlay
         OverlayScreen overlayScreen = new OverlayScreen(manager);
