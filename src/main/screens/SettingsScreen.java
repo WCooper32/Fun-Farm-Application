@@ -60,11 +60,11 @@ public class SettingsScreen extends Screen<VBox> {
         Label lDifficulty = new Label("Choose Difficulty:");
         lDifficulty.setFont(Font.font(null, FontWeight.BOLD, 14));
         ToggleGroup tDifficulty = new ToggleGroup();
-        RadioButton bNoobDiff = new RadioButton("Noob");
+        RadioButton bNoobDiff = new RadioButton("Easy");
         bNoobDiff.setToggleGroup(tDifficulty);
-        RadioButton bNormalDiff = new RadioButton("Normal");
+        RadioButton bNormalDiff = new RadioButton("Medium");
         bNormalDiff.setToggleGroup(tDifficulty);
-        RadioButton bNSaneDiff = new RadioButton("N-Sane");
+        RadioButton bNSaneDiff = new RadioButton("Hard");
         bNSaneDiff.setToggleGroup(tDifficulty);
         root.getChildren().addAll(lDifficulty, bNoobDiff, bNormalDiff, bNSaneDiff);
         VBox.setMargin(lDifficulty, new Insets(50,0,0,0));
@@ -73,11 +73,11 @@ public class SettingsScreen extends Screen<VBox> {
         Label lSeed = new Label("Choose Seed:");
         lSeed.setFont(Font.font(null, FontWeight.BOLD, 14));
         ToggleGroup tSeed = new ToggleGroup();
-        RadioButton bSeed1 = new RadioButton("Andrew's");
+        RadioButton bSeed1 = new RadioButton("Carrots");
         bSeed1.setToggleGroup(tSeed);
-        RadioButton bSeed2 = new RadioButton("Andrew's Mom's");
+        RadioButton bSeed2 = new RadioButton("Potatoes");
         bSeed2.setToggleGroup(tSeed);
-        RadioButton bSeed3 = new RadioButton("Andrew's Dad's Lands");
+        RadioButton bSeed3 = new RadioButton("Celery");
         bSeed3.setToggleGroup(tSeed);
         root.getChildren().addAll(lSeed, bSeed1, bSeed2, bSeed3);
         VBox.setMargin(lSeed, new Insets(50,0,0,0));
@@ -101,7 +101,7 @@ public class SettingsScreen extends Screen<VBox> {
         Button start = new Button("Start Game");
         start.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event) {
+            public void handle(ActionEvent event) { // TODO @Harrison please also check for unselected options
                 if (tfName.getText().trim().equals("")) {  // empty, blank (?), or null
                     System.out.println("Handle invalid name");
                     EventQueue.invokeLater(new Runnable() {
@@ -113,7 +113,7 @@ public class SettingsScreen extends Screen<VBox> {
                 } else {
                     manager.state.settings.initialized = true;
                     manager.state.settings.name = tfName.getText();
-                    manager.state.settings.difficulty = 0; // TODO @Harrison
+                    manager.state.settings.difficulty = 0; // TODO @Harrison please set the setting appropriatley using enums
                     manager.state.settings.season = 0; // TODO @Harrison
                     manager.state.settings.seed = 0; // TODO @Harrison
                     manager.startGame();
