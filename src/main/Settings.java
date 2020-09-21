@@ -1,3 +1,5 @@
+package main;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -5,8 +7,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -15,6 +19,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Settings extends Application {
 
@@ -29,14 +34,13 @@ public class Settings extends Application {
         VBox root = new VBox();
         root.setPadding(new Insets(10, 50, 50, 50));
         root.setId("settings");
-        root.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
+        root.getStylesheets().addAll(this.getClass().getResource("css/style.css").toExternalForm());
 
         Scene scene = new Scene(root, 1280,720);
         stage.setScene(scene);
 
         //ERROR SCREEN
         JOptionPane errorBox = new JOptionPane();
-
 
         //TITLE
         Label title = new Label("Fun Farm");
@@ -51,7 +55,7 @@ public class Settings extends Application {
         title.setEffect(ds);
 
         //Position
-        root.setMargin(title, new Insets(0,0,0,0));
+        VBox.setMargin(title, new Insets(0,0,0,0));
         title.setPrefWidth(Double.MAX_VALUE);
         title.setAlignment(Pos.TOP_LEFT);
         root.getChildren().add(title);
@@ -75,8 +79,8 @@ public class Settings extends Application {
         bNormalDiff.setToggleGroup(tDifficulty);
         RadioButton bNSaneDiff = new RadioButton("N-Sane");
         bNSaneDiff.setToggleGroup(tDifficulty);
-        root.getChildren().addAll(lDifficulty,bNoobDiff,bNormalDiff,bNSaneDiff);
-        root.setMargin(lDifficulty, new Insets(50,0,0,0));
+        root.getChildren().addAll(lDifficulty, bNoobDiff, bNormalDiff, bNSaneDiff);
+        VBox.setMargin(lDifficulty, new Insets(50,0,0,0));
 
         //SEED
         Label lSeed = new Label("Choose Seed:");
@@ -88,8 +92,8 @@ public class Settings extends Application {
         bSeed2.setToggleGroup(tSeed);
         RadioButton bSeed3 = new RadioButton("Andrew's Dad's Lands");
         bSeed3.setToggleGroup(tSeed);
-        root.getChildren().addAll(lSeed,bSeed1,bSeed2,bSeed3);
-        root.setMargin(lSeed, new Insets(50,0,0,0));
+        root.getChildren().addAll(lSeed, bSeed1, bSeed2, bSeed3);
+        VBox.setMargin(lSeed, new Insets(50,0,0,0));
 
         //SEASON
         Label lSeason = new Label("Choose Season:");
@@ -103,8 +107,8 @@ public class Settings extends Application {
         bSeason3.setToggleGroup(tSeason);
         RadioButton bSeason4 = new RadioButton("Winter");
         bSeason4.setToggleGroup(tSeason);
-        root.getChildren().addAll(lSeason,bSeason1,bSeason2,bSeason3,bSeason4);
-        root.setMargin(lSeason, new Insets(50,0,0,0));
+        root.getChildren().addAll(lSeason, bSeason1, bSeason2, bSeason3, bSeason4);
+        VBox.setMargin(lSeason, new Insets(50,0,0,0));
 
         //CONTINUE
         Button start = new Button("Start Game");
@@ -113,7 +117,12 @@ public class Settings extends Application {
             public void handle(ActionEvent event) {
                 if (tfName.getText().trim().equals("")) {  // empty, blank (?), or null
                     System.out.println("Handle invalid name");
-                    errorBox.showMessageDialog(null, "alert", "alert", JOptionPane.ERROR_MESSAGE);
+                    EventQueue.invokeLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            JOptionPane.showMessageDialog(null, "alert", "alert", JOptionPane.ERROR_MESSAGE);
+                        }
+                    });
                 } else {
                     Game game = new Game();
                     game.start(stage);
@@ -121,7 +130,7 @@ public class Settings extends Application {
             }
         });
         root.getChildren().add(start);
-        root.setMargin(start, new Insets(50,0,0,0));
+        VBox.setMargin(start, new Insets(50,0,0,0));
     }
 
     //Accessors

@@ -1,7 +1,7 @@
+package main;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -17,11 +17,10 @@ public class Game extends Application {
         StackPane root = new StackPane();
         Scene scene = new Scene(root, 1280, 720);
 
-        //Overlay
-        Controller controller = new Controller();
-        UI overlay = new UI(controller);
+        // Game Overlay
+        Manager manager = new Manager();
+        Overlay overlay = new Overlay(manager);
         root.getChildren().add(overlay.getPane());
-
 
         stage.setScene(scene);
     }

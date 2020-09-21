@@ -1,3 +1,5 @@
+package main;
+
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
@@ -15,7 +17,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class Welcome extends Application {
+public class Start extends Application {
 
     public static void main(String[] args) {
         launch(args);
@@ -28,17 +30,15 @@ public class Welcome extends Application {
         root.setId("pane");
         root.setFillWidth(true);
 
-
         //BACKGROUND
         Scene scene = new Scene(root, 1280,720);
-        scene.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
+        scene.getStylesheets().addAll(this.getClass().getResource("css/style.css").toExternalForm());
 
         //TITLE
         Label title = new Label("Fun Farm");
         title.setFont(new Font(90));
         title.setTextFill(Color.WHITE);
         title.setFont(Font.font(null, FontWeight.BOLD, 90));
-        //title.setStyle("-fx-border-color: green;");  //DEBUG
 
         //Drop Shadow
         DropShadow ds = new DropShadow();
@@ -47,7 +47,7 @@ public class Welcome extends Application {
         title.setEffect(ds);
 
         //Position
-        root.setMargin(title, new Insets(150,0,250,0));
+        VBox.setMargin(title, new Insets(150,0,250,0));
         title.setPrefWidth(Double.MAX_VALUE);
         title.setAlignment(Pos.BASELINE_CENTER);
         root.getChildren().add(title);

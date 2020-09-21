@@ -1,3 +1,5 @@
+package main;
+
 /**
  * 1. Switches between scenes
  * 2. Stores game state
@@ -6,7 +8,7 @@
  * 3. Put player data here
  *
  */
-public class Controller {
+public class Manager {
     private double money;
     public double getMoney() {
         return money;

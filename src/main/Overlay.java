@@ -1,21 +1,25 @@
+package main;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
-
-public class UI {
+public class Overlay {
 
     private GridPane overlay;
-    private Controller controller;
+    private Manager manager;
     private Label labelMoney;
 
-    public UI(Controller controller) {
+    public Overlay(Manager manager) {
         overlay = new GridPane();
-        this.controller = controller;
-        labelMoney = new Label("Money: " + controller.getMoney());
+        this.manager = manager;
+        labelMoney = new Label("Money: " + manager.getMoney());
         overlay.getChildren().add(labelMoney);
     }
-    public void update() {}
+
+    public void update() {
+
+    }
+
     public GridPane getPane() {
         return overlay;
     }
