@@ -1,4 +1,4 @@
-package main;
+package main.screens;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -17,27 +17,25 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import main.engine.Inventory;
+import main.engine.Manager;
+import main.engine.Settings;
+import main.screens.GameScreen;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Settings extends Application {
+public class SettingsScreen {
 
-    private String name;
-    private int difficulty;
-    private int seed;
-    private int season;
+    public VBox root;
 
-    @Override
-    public void start(Stage stage) {
+    public SettingsScreen(Manager manager) {
         System.out.println("Started settings screen");
-        VBox root = new VBox();
+
+        root = new VBox();
         root.setPadding(new Insets(10, 50, 50, 50));
         root.setId("settings");
-        root.getStylesheets().addAll(this.getClass().getResource("css/style.css").toExternalForm());
-
-        Scene scene = new Scene(root, 1280,720);
-        stage.setScene(scene);
+        root.getStylesheets().addAll(this.getClass().getResource("../css/style.css").toExternalForm());
 
         //ERROR SCREEN
         JOptionPane errorBox = new JOptionPane();
@@ -124,8 +122,15 @@ public class Settings extends Application {
                         }
                     });
                 } else {
-                    Game game = new Game();
-                    game.start(stage);
+                    Settings settings = new Settings();
+                    settings.name = tfName.getText();
+                    settings.difficulty = 0; // TODO
+                    settings.season = 0; // TODO
+                    settings.seed = 0; // TODO
+
+                    manager.state.settings = settings;
+                    manager.state.inventory = new Inventory();
+                    manager.startGame();
                 }
             }
         });
@@ -133,17 +138,4 @@ public class Settings extends Application {
         VBox.setMargin(start, new Insets(50,0,0,0));
     }
 
-    //Accessors
-    public String getName() {
-        return name;
-    }
-    public int getDifficulty() {
-        return difficulty;
-    }
-    public int getSeed() {
-        return seed;
-    }
-    public int getSeason() {
-        return season;
-    }
 }

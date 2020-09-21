@@ -1,38 +1,28 @@
-package main;
+package main.screens;
 
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
-import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.stage.Stage;
 import javafx.util.Duration;
+import main.engine.Manager;
 
-public class Start extends Application {
+public class StartScreen {
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+    public VBox root;
 
-    @Override
-    public void start(Stage primaryStage) {
+    public StartScreen(Manager manager) {
+
         //PANE
-        VBox root = new VBox();
+        root = new VBox();
         root.setId("pane");
         root.setFillWidth(true);
-
-        //BACKGROUND
-        Scene scene = new Scene(root, 1280,720);
-        scene.getStylesheets().addAll(this.getClass().getResource("css/style.css").toExternalForm());
 
         //TITLE
         Label title = new Label("Fun Farm");
@@ -66,18 +56,5 @@ public class Start extends Application {
         fadeTransition.setCycleCount(Animation.INDEFINITE);
         fadeTransition.play();
 
-        scene.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                System.out.println("Welcome screen pressed");
-                Settings settingsScreen = new Settings();
-                settingsScreen.start(primaryStage);
-            }
-        });
-
-        //STAGE
-        primaryStage.setTitle("Fun Farm");
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 }
