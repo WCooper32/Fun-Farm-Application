@@ -116,7 +116,16 @@ public class SettingsScreen extends Screen<VBox> {
                     manager.state.settings.difficulty = 0; // TODO @Harrison please set the setting appropriatley using enums
                     manager.state.settings.season = 0; // TODO @Harrison
                     manager.state.settings.seed = 0; // TODO @Harrison
+
+                    if (manager.state.settings.difficulty == 0) {
+                        manager.state.inventory.money = 999;
+                    } else {
+                        manager.state.inventory.money = 100;
+                    }
+
                     manager.startGame();
+
+
                 }
             }
         });
