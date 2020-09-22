@@ -30,6 +30,7 @@ public class Grid {
 
     public void removeSprite(Sprite<Pane> delSprite) {
         sprites.remove(delSprite);
+        numSprites--;
     }
 
     public Pane render() {
