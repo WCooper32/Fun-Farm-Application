@@ -1,23 +1,39 @@
 package main.screens;
 
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.BorderPane;
+//import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import main.engine.Manager;
 
-public class OverlayScreen extends Screen<GridPane> {
+public class OverlayScreen extends Screen<BorderPane> {
+
+//    private Manager manager;
+    private HBox UITop;
 
     public OverlayScreen(Manager manager) {
-        super(new GridPane());
+        super(new BorderPane());
 
-        Label labelMoney = new Label("Money: " + manager.state.inventory.money);
-        root.getChildren().add(labelMoney);
+
+
+        this.UITop = new HBox();
+
+        draw(manager);
+
+        this.root.setTop(UITop);
     }
 
     /**
-     * Can be called by other classes to update the UI
+     * handles the drawing of the UI
      */
-    public void update() {
+    private void draw(Manager manager) {
+        UITop.getChildren().clear();
 
+        Label labelMoney = new Label("Money: " + manager.state.inventory.money);
+        UITop.getChildren().add(labelMoney);
+
+        Label labelDay = new Label("Day: " + manager.state.environment.getDay());
+        UITop.getChildren().add(labelDay);
     }
 
 }
