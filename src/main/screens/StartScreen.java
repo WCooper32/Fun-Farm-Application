@@ -21,7 +21,7 @@ public class StartScreen extends Screen<VBox> {
         //PANE
         super(new VBox());
         root.setId("startBackground");
-        ((VBox)root).setFillWidth(true);
+        root.setFillWidth(true);
 
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override

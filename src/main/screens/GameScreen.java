@@ -39,6 +39,7 @@ public class GameScreen extends Screen<Pane> {
         @Override
         public void handle(long now) {
             Pane frame = grid.render();
+            root.getChildren().clear();
             root.getChildren().add(frame);
         }
     }
