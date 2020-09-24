@@ -20,8 +20,8 @@ public class StartScreen extends Screen<VBox> {
     public StartScreen(Manager manager) {
         //PANE
         super(new VBox());
-        root.setId("pane");
-        ((VBox)root).setFillWidth(true);
+        root.setId("startBackground");
+        root.setFillWidth(true);
 
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
