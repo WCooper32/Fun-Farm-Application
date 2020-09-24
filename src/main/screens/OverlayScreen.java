@@ -8,20 +8,18 @@ import main.engine.Manager;
 public class OverlayScreen extends Screen<BorderPane> {
 
     private BorderPane UI;
-    private Manager manager;
 
     public OverlayScreen(Manager manager) {
         super(new BorderPane());
-        this.manager = manager;
         this.UI = new BorderPane();
-        draw();
+        draw(manager);
         this.root.setTop(UI);
     }
 
     /**
      * handles the drawing of the UI
      */
-    private void draw() {
+    private void draw(Manager manager) {
         UI.getChildren().clear();
 
         VBox resources = new VBox();
@@ -35,26 +33,18 @@ public class OverlayScreen extends Screen<BorderPane> {
         UI.setCenter(labelDay);
     }
 
-    /**
-     * returns manager
-     * @return this.manager
-     */
-    public Manager getManager() {
-        return this.manager;
+    public void incrementMoney(Manager manager, int increment) {
+        manager.state.inventory.incrementMoney(increment);
+        this.draw(manager);
     }
 
-    public void incrementMoney(int increment) {
-        this.manager.state.inventory.incrementMoney(increment);
-        this.draw();
+    public void incrementWheat(Manager manager, int increment) {
+        manager.state.inventory.incrementWheat(increment);
+        this.draw(manager);
     }
 
-    public void incrementWheat(int increment) {
-        this.manager.state.inventory.incrementWheat(increment);
-        this.draw();
-    }
-
-    public void incrementCorn(int increment) {
-        this.manager.state.inventory.incrementCorn(increment);
-        this.draw();
+    public void incrementCorn(Manager manager, int increment) {
+        manager.state.inventory.incrementCorn(increment);
+        this.draw(manager);
     }
 }

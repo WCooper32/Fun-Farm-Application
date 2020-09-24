@@ -1,7 +1,5 @@
 package main.state;
 
-import javax.swing.plaf.nimbus.State;
-
 public class StateEnvironment {
 
     // Add environment state like plots and such here

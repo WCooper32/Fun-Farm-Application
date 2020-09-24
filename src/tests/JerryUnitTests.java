@@ -8,8 +8,8 @@ import static org.junit.Assert.assertEquals;
 
 public class JerryUnitTests {
     private static final int TIMEOUT = 200;
-    StateInventory Jerry;
-    StateEnvironment currentEnvironment;
+    private StateInventory Jerry;
+    private StateEnvironment currentEnvironment;
 
     @Test (timeout = TIMEOUT)
     public void setup() {
