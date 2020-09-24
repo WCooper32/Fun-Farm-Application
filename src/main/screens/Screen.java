@@ -1,6 +1,7 @@
 package main.screens;
 
 import javafx.scene.layout.Pane;
+import main.state.StateGame;
 
 public abstract class Screen<T extends Pane> {
 
@@ -15,6 +16,9 @@ public abstract class Screen<T extends Pane> {
 
     public Pane getRoot() {
         return root;
+    }
+
+    public void render(StateGame state) {
     }
 
 }

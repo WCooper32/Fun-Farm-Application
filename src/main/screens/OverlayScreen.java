@@ -4,47 +4,34 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import main.engine.Manager;
+import main.state.StateGame;
 
 public class OverlayScreen extends Screen<BorderPane> {
 
-    private BorderPane UI;
+    private BorderPane ui;
 
     public OverlayScreen(Manager manager) {
         super(new BorderPane());
-        this.UI = new BorderPane();
-        draw(manager);
-        this.root.setTop(UI);
+        this.ui = new BorderPane();
+        this.root.setTop(ui);
     }
 
     /**
      * handles the drawing of the UI
      */
-    private void draw(Manager manager) {
-        UI.getChildren().clear();
+    @Override
+    public void render(StateGame state) {
+        ui.getChildren().clear();
 
         VBox resources = new VBox();
-        Label labelMoney = new Label("Money: " + manager.state.inventory.money);
-        Label labelCorn = new Label("Corn: " + manager.state.inventory.corn);
-        Label labelWheat = new Label("Wheat: " + manager.state.inventory.wheat);
+        Label labelMoney = new Label("Money: " + state.inventory.money);
+        Label labelCorn = new Label("Corn: " + state.inventory.corn);
+        Label labelWheat = new Label("Wheat: " + state.inventory.wheat);
         resources.getChildren().addAll(labelMoney, labelCorn, labelWheat);
-        UI.setLeft(resources);
+        ui.setLeft(resources);
 
-        Label labelDay = new Label("Day: " + manager.state.environment.getDay());
-        UI.setCenter(labelDay);
+        Label labelDay = new Label("Day: " + state.environment.getDay());
+        ui.setCenter(labelDay);
     }
 
-    public void incrementMoney(Manager manager, int increment) {
-        manager.state.inventory.incrementMoney(increment);
-        this.draw(manager);
-    }
-
-    public void incrementWheat(Manager manager, int increment) {
-        manager.state.inventory.incrementWheat(increment);
-        this.draw(manager);
-    }
-
-    public void incrementCorn(Manager manager, int increment) {
-        manager.state.inventory.incrementCorn(increment);
-        this.draw(manager);
-    }
 }
