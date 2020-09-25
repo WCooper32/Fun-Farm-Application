@@ -15,6 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import main.engine.Manager;
+import main.state.StateInventory;
 
 import javax.swing.*;
 import java.awt.*;
@@ -52,10 +53,10 @@ public class SettingsScreen extends Screen<VBox> {
         Label labelName = new Label("Name:");
         labelName.setFont(Font.font(null, FontWeight.BOLD, 14));
         TextField textfieldName = new TextField();
-        HBox hb = new HBox();
-        root.getChildren().add(hb);
-        hb.getChildren().addAll(labelName, textfieldName);
-        hb.setSpacing(10);
+        HBox rowName = new HBox();
+        root.getChildren().add(rowName);
+        rowName.getChildren().addAll(labelName, textfieldName);
+        rowName.setSpacing(10);
 
         //DIFFICULTY
         Label labelDifficulty = new Label("Choose Difficulty:");
@@ -63,13 +64,13 @@ public class SettingsScreen extends Screen<VBox> {
         ToggleGroup toggleDifficulty = new ToggleGroup();
         RadioButton buttonEasyDiff = new RadioButton("Easy");
         buttonEasyDiff.setToggleGroup(toggleDifficulty);
-        buttonEasyDiff.setUserData(Difficulty.EASY);
+        buttonEasyDiff.setUserData(StateInventory.Difficulty.EASY);
         RadioButton buttonNormalDiff = new RadioButton("Medium");
         buttonNormalDiff.setToggleGroup(toggleDifficulty);
-        buttonNormalDiff.setUserData(Difficulty.MEDIUM);
+        buttonNormalDiff.setUserData(StateInventory.Difficulty.MEDIUM);
         RadioButton buttonHardDiff = new RadioButton("Hard");
         buttonHardDiff.setToggleGroup(toggleDifficulty);
-        buttonHardDiff.setUserData(Difficulty.HARD);
+        buttonHardDiff.setUserData(StateInventory.Difficulty.HARD);
         root.getChildren().addAll(labelDifficulty, buttonEasyDiff,
                 buttonNormalDiff, buttonHardDiff);
         VBox.setMargin(labelDifficulty, new Insets(50, 0, 0, 0));
@@ -80,35 +81,35 @@ public class SettingsScreen extends Screen<VBox> {
         ToggleGroup toggleSeed = new ToggleGroup();
         RadioButton buttonSeed1 = new RadioButton("Carrots");
         buttonSeed1.setToggleGroup(toggleSeed);
-        buttonSeed1.setUserData(Seed.CARROTS);
+        buttonSeed1.setUserData(StateInventory.Seed.CARROTS);
         RadioButton buttonSeed2 = new RadioButton("Potatoes");
         buttonSeed2.setToggleGroup(toggleSeed);
-        buttonSeed2.setUserData(Seed.POTATOES);
+        buttonSeed2.setUserData(StateInventory.Seed.POTATOES);
         RadioButton buttonSeed3 = new RadioButton("Celery");
         buttonSeed3.setToggleGroup(toggleSeed);
-        buttonSeed3.setUserData(Seed.CELERY);
+        buttonSeed3.setUserData(StateInventory.Seed.CELERY);
         root.getChildren().addAll(labelSeed, buttonSeed1, buttonSeed2, buttonSeed3);
         VBox.setMargin(labelSeed, new Insets(50, 0, 0, 0));
 
         //SEASON
-        Label lSeason = new Label("Choose Season:");
-        lSeason.setFont(Font.font(null, FontWeight.BOLD, 14));
+        Label labelSeason = new Label("Choose Season:");
+        labelSeason.setFont(Font.font(null, FontWeight.BOLD, 14));
         ToggleGroup toggleSeason = new ToggleGroup();
         RadioButton buttonSeason1 = new RadioButton("Spring");
         buttonSeason1.setToggleGroup(toggleSeason);
-        buttonSeason1.setUserData(Season.SPRING);
+        buttonSeason1.setUserData(StateInventory.Season.SPRING);
         RadioButton buttonSeason2 = new RadioButton("Summer");
         buttonSeason2.setToggleGroup(toggleSeason);
-        buttonSeason2.setUserData(Season.SUMMER);
+        buttonSeason2.setUserData(StateInventory.Season.SUMMER);
         RadioButton buttonSeason3 = new RadioButton("Fall");
         buttonSeason3.setToggleGroup(toggleSeason);
-        buttonSeason3.setUserData(Season.FALL);
+        buttonSeason3.setUserData(StateInventory.Season.FALL);
         RadioButton buttonSeason4 = new RadioButton("Winter");
         buttonSeason4.setToggleGroup(toggleSeason);
-        buttonSeason4.setUserData(Season.WINTER);
-        root.getChildren().addAll(lSeason, buttonSeason1,
+        buttonSeason4.setUserData(StateInventory.Season.WINTER);
+        root.getChildren().addAll(labelSeason, buttonSeason1,
                 buttonSeason2, buttonSeason3, buttonSeason4);
-        VBox.setMargin(lSeason, new Insets(50, 0, 0, 0));
+        VBox.setMargin(labelSeason, new Insets(50, 0, 0, 0));
 
         //CONTINUE
         Button start = new Button("Start Game");
@@ -152,14 +153,14 @@ public class SettingsScreen extends Screen<VBox> {
                         }
                     });
                 } else {
-                    buttonNormalDiff.setUserData(Difficulty.MEDIUM);
+                    buttonNormalDiff.setUserData(StateInventory.Difficulty.MEDIUM);
                     manager.state.settings.initialized = true;
                     manager.state.settings.name = textfieldName.getText();
-                    manager.state.settings.difficulty =  ((Difficulty) toggleDifficulty.
+                    manager.state.settings.difficulty =  ((StateInventory.Difficulty) toggleDifficulty.
                             getSelectedToggle().getUserData()).getValue();
-                    manager.state.settings.season = ((Season) toggleSeason.
+                    manager.state.settings.season = ((StateInventory.Season) toggleSeason.
                             getSelectedToggle().getUserData()).getValue();
-                    manager.state.settings.seed = ((Seed) toggleSeed.
+                    manager.state.settings.seed = ((StateInventory.Seed) toggleSeed.
                             getSelectedToggle().getUserData()).getValue();
                     manager.startGame();
                 }
@@ -168,37 +169,4 @@ public class SettingsScreen extends Screen<VBox> {
         root.getChildren().add(start);
         VBox.setMargin(start, new Insets(50, 0, 0, 0));
     }
-
-    public enum Difficulty {
-        EASY(1), MEDIUM(2), HARD(3);
-        private int value;
-        private Difficulty(int value) {
-            this.value = value;
-        }
-
-        public int getValue() {
-            return value;
-        }
-    };
-    public enum Season {
-        SPRING(1), SUMMER(2), FALL(3), WINTER(4);
-        private int value;
-        private Season(int value) {
-            this.value = value;
-        }
-        public int getValue() {
-            return value;
-        }
-    };
-    public enum Seed {
-        CARROTS(1), POTATOES(2), CELERY(3);
-        private int value;
-        private Seed(int value) {
-            this.value = value;
-        }
-        public int getValue() {
-            return value;
-        }
-    };
-
 }
