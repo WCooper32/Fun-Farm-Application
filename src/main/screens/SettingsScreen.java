@@ -15,7 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import main.engine.Manager;
-import main.state.StateInventory;
+import main.state.StateSettings;
 
 import javax.swing.*;
 import java.awt.*;
@@ -64,13 +64,13 @@ public class SettingsScreen extends Screen<VBox> {
         ToggleGroup toggleDifficulty = new ToggleGroup();
         RadioButton buttonEasyDiff = new RadioButton("Easy");
         buttonEasyDiff.setToggleGroup(toggleDifficulty);
-        buttonEasyDiff.setUserData(StateInventory.Difficulty.EASY);
+        buttonEasyDiff.setUserData(StateSettings.Difficulty.EASY);
         RadioButton buttonNormalDiff = new RadioButton("Medium");
         buttonNormalDiff.setToggleGroup(toggleDifficulty);
-        buttonNormalDiff.setUserData(StateInventory.Difficulty.MEDIUM);
+        buttonNormalDiff.setUserData(StateSettings.Difficulty.MEDIUM);
         RadioButton buttonHardDiff = new RadioButton("Hard");
         buttonHardDiff.setToggleGroup(toggleDifficulty);
-        buttonHardDiff.setUserData(StateInventory.Difficulty.HARD);
+        buttonHardDiff.setUserData(StateSettings.Difficulty.HARD);
         root.getChildren().addAll(labelDifficulty, buttonEasyDiff,
                 buttonNormalDiff, buttonHardDiff);
         VBox.setMargin(labelDifficulty, new Insets(50, 0, 0, 0));
@@ -81,13 +81,13 @@ public class SettingsScreen extends Screen<VBox> {
         ToggleGroup toggleSeed = new ToggleGroup();
         RadioButton buttonSeed1 = new RadioButton("Carrots");
         buttonSeed1.setToggleGroup(toggleSeed);
-        buttonSeed1.setUserData(StateInventory.Seed.CARROTS);
+        buttonSeed1.setUserData(StateSettings.Seed.CARROTS);
         RadioButton buttonSeed2 = new RadioButton("Potatoes");
         buttonSeed2.setToggleGroup(toggleSeed);
-        buttonSeed2.setUserData(StateInventory.Seed.POTATOES);
+        buttonSeed2.setUserData(StateSettings.Seed.POTATOES);
         RadioButton buttonSeed3 = new RadioButton("Celery");
         buttonSeed3.setToggleGroup(toggleSeed);
-        buttonSeed3.setUserData(StateInventory.Seed.CELERY);
+        buttonSeed3.setUserData(StateSettings.Seed.CELERY);
         root.getChildren().addAll(labelSeed, buttonSeed1, buttonSeed2, buttonSeed3);
         VBox.setMargin(labelSeed, new Insets(50, 0, 0, 0));
 
@@ -97,16 +97,16 @@ public class SettingsScreen extends Screen<VBox> {
         ToggleGroup toggleSeason = new ToggleGroup();
         RadioButton buttonSeason1 = new RadioButton("Spring");
         buttonSeason1.setToggleGroup(toggleSeason);
-        buttonSeason1.setUserData(StateInventory.Season.SPRING);
+        buttonSeason1.setUserData(StateSettings.Season.SPRING);
         RadioButton buttonSeason2 = new RadioButton("Summer");
         buttonSeason2.setToggleGroup(toggleSeason);
-        buttonSeason2.setUserData(StateInventory.Season.SUMMER);
+        buttonSeason2.setUserData(StateSettings.Season.SUMMER);
         RadioButton buttonSeason3 = new RadioButton("Fall");
         buttonSeason3.setToggleGroup(toggleSeason);
-        buttonSeason3.setUserData(StateInventory.Season.FALL);
+        buttonSeason3.setUserData(StateSettings.Season.FALL);
         RadioButton buttonSeason4 = new RadioButton("Winter");
         buttonSeason4.setToggleGroup(toggleSeason);
-        buttonSeason4.setUserData(StateInventory.Season.WINTER);
+        buttonSeason4.setUserData(StateSettings.Season.WINTER);
         root.getChildren().addAll(labelSeason, buttonSeason1,
                 buttonSeason2, buttonSeason3, buttonSeason4);
         VBox.setMargin(labelSeason, new Insets(50, 0, 0, 0));
@@ -153,14 +153,13 @@ public class SettingsScreen extends Screen<VBox> {
                         }
                     });
                 } else {
-                    buttonNormalDiff.setUserData(StateInventory.Difficulty.MEDIUM);
                     manager.state.settings.initialized = true;
                     manager.state.settings.name = textfieldName.getText();
-                    manager.state.settings.difficulty =  ((StateInventory.Difficulty) toggleDifficulty.
+                    manager.state.settings.difficulty = ((StateSettings.Difficulty)
+                            toggleDifficulty.getSelectedToggle().getUserData()).getValue();
+                    manager.state.settings.season = ((StateSettings.Season) toggleSeason.
                             getSelectedToggle().getUserData()).getValue();
-                    manager.state.settings.season = ((StateInventory.Season) toggleSeason.
-                            getSelectedToggle().getUserData()).getValue();
-                    manager.state.settings.seed = ((StateInventory.Seed) toggleSeed.
+                    manager.state.settings.seed = ((StateSettings.Seed) toggleSeed.
                             getSelectedToggle().getUserData()).getValue();
                     manager.startGame();
                 }
