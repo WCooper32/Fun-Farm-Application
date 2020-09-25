@@ -11,7 +11,7 @@ public class JerryUnitTests {
     private StateInventory Jerry;
     private StateEnvironment currentEnvironment;
 
-    @Test (timeout = TIMEOUT)
+    @Before
     public void setup() {
         Jerry = new StateInventory();
         currentEnvironment = new StateEnvironment();

@@ -6,6 +6,12 @@ public class StateInventory {
     public int wheat;
     public int corn;
 
+    public StateInventory() {
+        money = 0;
+        wheat = 0;
+        corn = 0;
+    }
+
     public void incrementMoney(int increment) {
         this.money += increment;
     }

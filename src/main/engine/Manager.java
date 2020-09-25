@@ -27,16 +27,16 @@ import java.util.ArrayList;
 
 public class Manager extends Application {
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+     public static void main(String[] args) {
+     launch(args);
+     }
 
-    private Stage primaryStage;
-    private StackPane root;
-    private StateGame state;
-    private ArrayList<Screen> screens;
+     private Stage primaryStage;
+     private StackPane root;
+     private StateGame state;
+     private ArrayList<Screen> screens;
 
-    /**
+     /**
      * Removes all children from the root stack
      */
     private void resetScreen() {
