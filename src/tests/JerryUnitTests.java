@@ -27,9 +27,9 @@ public class JerryUnitTests {
 
     @Test
     public void testWheat() {
-        Jerry.incrementWheat(5);
+        Jerry.setWheat(5);
         int expected = 5;
-        int actual = Jerry.wheat;
+        int actual = Jerry.getWheat();
         assertEquals(expected, actual);
     }
 }

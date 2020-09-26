@@ -1,6 +1,7 @@
 package tests;
 
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import main.engine.Manager;
 import main.screens.OverlayScreen;
@@ -15,10 +16,11 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
-public class UiUnitTests {
+public class overlayUiTests {
     private static final int TIMEOUT = 200;
     @Rule
     public JavaFXThreadingRule javafxRule = new JavaFXThreadingRule();
+    //this rule allows JavaFX objects to be made in these tests
 
     public Manager manager;
     public OverlayScreen mainScreen;
@@ -37,16 +39,16 @@ public class UiUnitTests {
 
         VBox resources = new VBox();
 
-        Label labelMoney = new Label("Money: " + state.inventory.money);
-        Label labelCorn = new Label("Corn: " + state.inventory.corn);
-        Label labelWheat = new Label("Wheat: " + state.inventory.wheat);
+        Label labelMoney = new Label("Money: " + state.inventory.getMoney());
+        Label labelCorn = new Label("Corn: " + state.inventory.getCorn());
+        Label labelWheat = new Label("Wheat: " + state.inventory.getWheat());
         resources.getChildren().addAll(labelMoney, labelCorn, labelWheat);
 
         ArrayList<Label> list = new ArrayList<>();
         list.add(labelMoney);
         list.add(labelCorn);
         list.add(labelWheat);
-        VBox actualResources = (VBox) mainScreen.getUi().getLeft();
+        VBox actualResources = (VBox) ((BorderPane)((BorderPane)mainScreen.getRoot()).getTop()).getLeft();
 
         boolean isSame = true;
 

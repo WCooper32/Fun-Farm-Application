@@ -118,9 +118,9 @@ public class SettingsScreen extends Screen<VBox> {
                     manager.getStateGame().settings.seed = 0; // TODO @Harrison
 
                     if (manager.getStateGame().settings.difficulty == 0) {
-                        manager.getStateGame().inventory.money = 999;
+                        manager.getStateGame().inventory.setMoney(999);
                     } else {
-                        manager.getStateGame().inventory.money = 100;
+                        manager.getStateGame().inventory.setMoney(100);
                     }
 
                     manager.startGame();

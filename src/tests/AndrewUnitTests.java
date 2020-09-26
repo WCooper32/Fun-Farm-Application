@@ -13,23 +13,23 @@ public class AndrewUnitTests {
     @Before
     public void setup() {
         inventory = new StateInventory();
-        inventory.money = 0;
-        inventory.corn = 10;
+        inventory.setMoney(0);
+        inventory.setMoney(10);
     }
 
     @Test (timeout = TIMEOUT)
     public void testMoney() {
-        inventory.incrementMoney(5);
+        inventory.setMoney(5);
         int expect = 5;
-        int actual = inventory.money;
+        int actual = inventory.getMoney();
         assertEquals(expect, actual);
     }
 
     @Test (timeout = TIMEOUT)
     public void testCorn() {
-        inventory.incrementCorn(5);
+        inventory.setMoney(15);
         int expect = 15;
-        int actual = inventory.corn;
+        int actual = inventory.getMoney();
         assertEquals(expect, actual);
     }
 

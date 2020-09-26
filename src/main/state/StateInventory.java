@@ -2,9 +2,9 @@ package main.state;
 
 public class StateInventory {
 
-    public int money;
-    public int wheat;
-    public int corn;
+    private int money;
+    private int wheat;
+    private int corn;
 
     public StateInventory() {
         money = 0;
@@ -12,16 +12,28 @@ public class StateInventory {
         corn = 0;
     }
 
-    public void incrementMoney(int increment) {
-        this.money += increment;
+    public int getMoney() {
+        return this.money;
     }
 
-    public void incrementWheat(int increment) {
-        this.wheat += increment;
+    public void setMoney(int set) {
+        this.money = set;
     }
 
-    public void incrementCorn(int increment) {
-        this.corn += increment;
+    public int getWheat() {
+        return this.wheat;
+    }
+
+    public void setWheat(int set) {
+        this.wheat = set;
+    }
+
+    public int getCorn() {
+        return this.corn;
+    }
+
+    public void setCorn(int set) {
+        this.corn = set;
     }
 
 }

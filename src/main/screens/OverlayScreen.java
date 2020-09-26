@@ -14,6 +14,7 @@ public class OverlayScreen extends Screen<BorderPane> {
         super(new BorderPane());
         this.ui = new BorderPane();
         this.root.setTop(ui);
+
     }
 
     /**
@@ -25,21 +26,14 @@ public class OverlayScreen extends Screen<BorderPane> {
 
         VBox resources = new VBox();
 
-        Label labelMoney = new Label("Money: " + state.inventory.money);
-        Label labelCorn = new Label("Corn: " + state.inventory.corn);
-        Label labelWheat = new Label("Wheat: " + state.inventory.wheat);
+        Label labelMoney = new Label("Money: " + state.inventory.getMoney());
+        Label labelCorn = new Label("Corn: " + state.inventory.getCorn());
+        Label labelWheat = new Label("Wheat: " + state.inventory.getWheat());
         resources.getChildren().addAll(labelMoney, labelCorn, labelWheat);
         ui.setLeft(resources);
 
         Label labelDay = new Label("Day: " + state.environment.getDay());
         ui.setCenter(labelDay);
-    }
-
-    /**
-     * returns the ui
-     */
-    public BorderPane getUi() {
-        return this.ui;
     }
 
 }

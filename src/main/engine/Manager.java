@@ -28,7 +28,7 @@ import java.util.ArrayList;
 public class Manager extends Application {
 
      public static void main(String[] args) {
-     launch(args);
+         launch(args);
      }
 
      private Stage primaryStage;
@@ -44,7 +44,7 @@ public class Manager extends Application {
         screens.clear();
     }
 
-    /**
+     /**
      * Adds the given screen to the root stack
      * @param screen the screen who's root we will use
      */

@@ -18,7 +18,7 @@ public class UnitTestRunner {
         }
         System.out.println(jerry.wasSuccessful());
 
-        Result UiUnitTests = JUnitCore.runClasses(UiUnitTests.class);
+        Result UiUnitTests = JUnitCore.runClasses(overlayUiTests.class);
         for (Failure failure : UiUnitTests.getFailures()) {
             System.out.println(failure.toString());
         }
