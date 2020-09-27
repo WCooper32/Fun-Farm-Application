@@ -1,6 +1,5 @@
 package main.screens;
 
-import javafx.animation.AnimationTimer;
 import javafx.scene.layout.Pane;
 import main.engine.Grid;
 import main.engine.Manager;

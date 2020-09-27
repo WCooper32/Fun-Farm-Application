@@ -22,6 +22,11 @@ import java.awt.*;
 
 public class SettingsScreen extends Screen<VBox> {
 
+    private ToggleGroup toggleSeason;
+    private ToggleGroup toggleSeed;
+    private ToggleGroup toggleDifficulty;
+    private TextField textfieldName;
+
     public SettingsScreen(Manager manager) {
         super(new VBox());
         System.out.println("Started settings screen");
@@ -52,7 +57,7 @@ public class SettingsScreen extends Screen<VBox> {
         //NAME
         Label labelName = new Label("Name:");
         labelName.setFont(Font.font(null, FontWeight.BOLD, 14));
-        TextField textfieldName = new TextField();
+        textfieldName = new TextField();
         HBox rowName = new HBox();
         root.getChildren().add(rowName);
         rowName.getChildren().addAll(labelName, textfieldName);
@@ -61,16 +66,21 @@ public class SettingsScreen extends Screen<VBox> {
         //DIFFICULTY
         Label labelDifficulty = new Label("Choose Difficulty:");
         labelDifficulty.setFont(Font.font(null, FontWeight.BOLD, 14));
-        ToggleGroup toggleDifficulty = new ToggleGroup();
+
+        toggleDifficulty = new ToggleGroup();
+
         RadioButton buttonEasyDiff = new RadioButton("Easy");
         buttonEasyDiff.setToggleGroup(toggleDifficulty);
         buttonEasyDiff.setUserData(StateSettings.Difficulty.EASY);
+
         RadioButton buttonNormalDiff = new RadioButton("Medium");
         buttonNormalDiff.setToggleGroup(toggleDifficulty);
         buttonNormalDiff.setUserData(StateSettings.Difficulty.MEDIUM);
+
         RadioButton buttonHardDiff = new RadioButton("Hard");
         buttonHardDiff.setToggleGroup(toggleDifficulty);
         buttonHardDiff.setUserData(StateSettings.Difficulty.HARD);
+
         root.getChildren().addAll(labelDifficulty, buttonEasyDiff,
                 buttonNormalDiff, buttonHardDiff);
         VBox.setMargin(labelDifficulty, new Insets(50, 0, 0, 0));
@@ -78,94 +88,143 @@ public class SettingsScreen extends Screen<VBox> {
         //SEED
         Label labelSeed = new Label("Choose Seed:");
         labelSeed.setFont(Font.font(null, FontWeight.BOLD, 14));
-        ToggleGroup toggleSeed = new ToggleGroup();
+
+        toggleSeed = new ToggleGroup();
+
         RadioButton buttonSeed1 = new RadioButton("Carrots");
         buttonSeed1.setToggleGroup(toggleSeed);
         buttonSeed1.setUserData(StateSettings.Seed.CARROTS);
+
         RadioButton buttonSeed2 = new RadioButton("Potatoes");
         buttonSeed2.setToggleGroup(toggleSeed);
         buttonSeed2.setUserData(StateSettings.Seed.POTATOES);
+
         RadioButton buttonSeed3 = new RadioButton("Celery");
         buttonSeed3.setToggleGroup(toggleSeed);
         buttonSeed3.setUserData(StateSettings.Seed.CELERY);
+
         root.getChildren().addAll(labelSeed, buttonSeed1, buttonSeed2, buttonSeed3);
         VBox.setMargin(labelSeed, new Insets(50, 0, 0, 0));
 
         //SEASON
         Label labelSeason = new Label("Choose Season:");
         labelSeason.setFont(Font.font(null, FontWeight.BOLD, 14));
-        ToggleGroup toggleSeason = new ToggleGroup();
+
+        toggleSeason = new ToggleGroup();
+
         RadioButton buttonSeason1 = new RadioButton("Spring");
         buttonSeason1.setToggleGroup(toggleSeason);
         buttonSeason1.setUserData(StateSettings.Season.SPRING);
+
         RadioButton buttonSeason2 = new RadioButton("Summer");
         buttonSeason2.setToggleGroup(toggleSeason);
         buttonSeason2.setUserData(StateSettings.Season.SUMMER);
+
         RadioButton buttonSeason3 = new RadioButton("Fall");
         buttonSeason3.setToggleGroup(toggleSeason);
         buttonSeason3.setUserData(StateSettings.Season.FALL);
+
         RadioButton buttonSeason4 = new RadioButton("Winter");
         buttonSeason4.setToggleGroup(toggleSeason);
         buttonSeason4.setUserData(StateSettings.Season.WINTER);
+
         root.getChildren().addAll(labelSeason, buttonSeason1,
                 buttonSeason2, buttonSeason3, buttonSeason4);
         VBox.setMargin(labelSeason, new Insets(50, 0, 0, 0));
 
         //CONTINUE
-        Button start = new Button("Start Game");
-        start.setOnAction(new EventHandler<ActionEvent>() {
+        Button buttonStart = new Button("Start Game");
+        buttonStart.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if (textfieldName.getText().trim().equals("")) {  // empty, blank (?), or null
-                    System.out.println("Handle invalid name");
-                    EventQueue.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            JOptionPane.showMessageDialog(null, "Please enter a valid name.",
-                                    "Error", JOptionPane.ERROR_MESSAGE);
-                        }
-                    });
-                } else if (toggleDifficulty.getSelectedToggle() == null) {
-                    System.out.println("Handle unselected difficulty");
-                    EventQueue.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            JOptionPane.showMessageDialog(null, "Please select a difficulty.",
-                                    "Error", JOptionPane.ERROR_MESSAGE);
-                        }
-                    });
-                } else if (toggleSeed.getSelectedToggle() == null) {
-                    System.out.println("Handle unselected seed");
-                    EventQueue.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            JOptionPane.showMessageDialog(null, "Please select a seed.",
-                                    "Error", JOptionPane.ERROR_MESSAGE);
-                        }
-                    });
-                } else if (toggleSeason.getSelectedToggle() == null) {
-                    System.out.println("Handle unselected season");
-                    EventQueue.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            JOptionPane.showMessageDialog(null, "Please select a season.",
-                                    "Error", JOptionPane.ERROR_MESSAGE);
-                        }
-                    });
-                } else {
-                    manager.getState().getSettings().setInitialized(true);
-                    manager.getState().getSettings().setName(textfieldName.getText());
-                    manager.getState().getSettings().setDifficulty(((StateSettings.Difficulty)
-                            toggleDifficulty.getSelectedToggle().getUserData()).getValue());
-                    manager.getState().getSettings().setSeason(((StateSettings.Season) toggleSeason.
-                            getSelectedToggle().getUserData()).getValue());
-                    manager.getState().getSettings().setSeed(((StateSettings.Seed) toggleSeed.
-                            getSelectedToggle().getUserData()).getValue());
-                    manager.startGame();
+                if (verifyName() && verifyDifficulty() && verifySeed() && verifySeason()) {
+                    updateManager(manager);
                 }
             }
         });
-        root.getChildren().add(start);
-        VBox.setMargin(start, new Insets(50, 0, 0, 0));
+        root.getChildren().add(buttonStart);
+        VBox.setMargin(buttonStart, new Insets(50, 0, 0, 0));
+    }
+    public void updateManager(Manager manager) {
+        manager.getState().getSettings().setInitialized(true);
+        manager.getState().getSettings().setName(textfieldName.getText());
+        manager.getState().getSettings().setDifficulty(((StateSettings.Difficulty) toggleDifficulty.
+                getSelectedToggle().getUserData()) .getValue());
+        manager.getState().getSettings().setSeason(((StateSettings.Season) toggleSeason.
+                getSelectedToggle().getUserData()).getValue());
+        manager.getState().getSettings().setSeed(((StateSettings.Seed) toggleSeed.
+                getSelectedToggle().getUserData()).getValue());
+        manager.startGame();
+    }
+    public boolean verifyName() {
+        if (textfieldName.getText().trim().equals("")) {  // empty, blank (?), or null
+            System.out.println("Handle invalid name");
+            EventQueue.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    JOptionPane.showMessageDialog(null, "Please enter a valid name.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            });
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public boolean verifyDifficulty() {
+        if (toggleDifficulty.getSelectedToggle() == null) {
+            System.out.println("Handle unselected difficulty");
+            EventQueue.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    JOptionPane.showMessageDialog(null, "Please select a difficulty.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            });
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public boolean verifySeason() {
+        if (toggleSeason.getSelectedToggle() == null) {
+            System.out.println("Handle unselected season");
+            EventQueue.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    JOptionPane.showMessageDialog(null, "Please select a season.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            });
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public boolean verifySeed() {
+        if (toggleSeed.getSelectedToggle() == null) {
+            System.out.println("Handle unselected seed");
+            EventQueue.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    JOptionPane.showMessageDialog(null, "Please select a seed.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            });
+            return false;
+        }
+        return true;
+    }
+    public ToggleGroup getToggleDifficulty() {
+        return toggleDifficulty;
+    }
+    public ToggleGroup getToggleSeason() {
+        return toggleSeason;
+    }
+    public ToggleGroup getToggleSeed() {
+        return toggleSeed;
+    }
+    public TextField getTextfieldName() {
+        return textfieldName;
     }
 }
