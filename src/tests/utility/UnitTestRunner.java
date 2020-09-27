@@ -3,10 +3,7 @@ package tests.utility;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
-import tests.AlexUnitTests;
-import tests.AndrewUnitTests;
-import tests.JerryUnitTests;
-import tests.OverlayUITests;
+import tests.*;
 
 public class UnitTestRunner {
 
@@ -16,7 +13,9 @@ public class UnitTestRunner {
                 AndrewUnitTests.class,
                 JerryUnitTests.class,
                 OverlayUITests.class,
-                AlexUnitTests.class
+                AlexUnitTests.class,
+                GridTests.class,
+                SettingsTest.class
         );
 
         for (Failure failure : result.getFailures()) {
