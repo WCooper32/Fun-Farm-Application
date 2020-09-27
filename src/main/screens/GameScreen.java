@@ -1,17 +1,11 @@
 package main.screens;
 
 import javafx.animation.AnimationTimer;
-import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import main.engine.Grid;
 import main.engine.Manager;
 import main.sprites.Plot;
 import main.state.StateGame;
-
-import java.util.Timer;
-import java.util.TimerTask;
-
 
 /**
  * 1. Have different class/app for UI (money, date, etc.)
@@ -28,7 +22,7 @@ public class GameScreen extends Screen<Pane> {
 
         grid = new Grid();
         for (int i = 0; i < 12; i++) {
-            grid.addSprite(new Plot(), (i/6 + 2)*68, (i%6 + 1)*52);
+            grid.addSprite(new Plot(), (i / 6 + 2) * 68, (i % 6 + 1) * 52);
         }
 
     }

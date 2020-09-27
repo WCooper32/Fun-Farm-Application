@@ -98,7 +98,7 @@ public class Manager extends Application {
      * Start the game if settings are initialized. If not, ask for settings.
      */
     public void startGame() {
-        if (!state.settings.initialized) {
+        if (!state.getSettings().isInitialized()) {
             resetScreen();
             addScreen(new SettingsScreen(this));
         } else {
@@ -123,6 +123,5 @@ public class Manager extends Application {
             }
         }
     }
-    
 }
 
