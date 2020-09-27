@@ -153,13 +153,13 @@ public class SettingsScreen extends Screen<VBox> {
                         }
                     });
                 } else {
-                    manager.state.settings.initialized = true;
-                    manager.state.settings.name = textfieldName.getText();
-                    manager.state.settings.difficulty = ((StateSettings.Difficulty)
+                    manager.getState().settings.initialized = true;
+                    manager.getState().settings.name = textfieldName.getText();
+                    manager.getState().settings.difficulty = ((StateSettings.Difficulty)
                             toggleDifficulty.getSelectedToggle().getUserData()).getValue();
-                    manager.state.settings.season = ((StateSettings.Season) toggleSeason.
+                    manager.getState().settings.season = ((StateSettings.Season) toggleSeason.
                             getSelectedToggle().getUserData()).getValue();
-                    manager.state.settings.seed = ((StateSettings.Seed) toggleSeed.
+                    manager.getState().settings.seed = ((StateSettings.Seed) toggleSeed.
                             getSelectedToggle().getUserData()).getValue();
                     manager.startGame();
                 }

@@ -9,7 +9,7 @@ public class StateSettings {
     public int seed;
     public int season;
 
-    public int setStartingMoney() {
+    public int getStartingMoney() {
         if (difficulty == 3) {
             return 50;
         } else if (difficulty == 2) {

@@ -103,7 +103,7 @@ public class Manager extends Application {
             addScreen(new SettingsScreen(this));
         } else {
             // Sets money based on difficulty
-            state.inventory.money = state.settings.setStartingMoney();
+            state.inventory.setMoney(state.settings.getStartingMoney());
 
             resetScreen();
             addScreen(new GameScreen(this));
