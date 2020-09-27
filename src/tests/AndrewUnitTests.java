@@ -27,9 +27,9 @@ public class AndrewUnitTests {
 
     @Test (timeout = TIMEOUT)
     public void testCorn() {
-        inventory.setMoney(15);
+        inventory.setCorn(15);
         int expect = 15;
-        int actual = inventory.getMoney();
+        int actual = inventory.getCorn();
         assertEquals(expect, actual);
     }
 
