@@ -1,24 +1,38 @@
 package main.screens;
 
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import main.engine.Manager;
+import main.state.StateGame;
 
-public class OverlayScreen extends Screen<GridPane> {
+public class OverlayScreen extends Screen<BorderPane> {
+
+    private BorderPane ui;
 
     public OverlayScreen(Manager manager) {
-        super(new GridPane());
-
-        Label labelMoney = new Label("Money: " + manager.getState().getInventory().getMoney());
-        root.getChildren().add(labelMoney);
+        super(new BorderPane());
+        this.ui = new BorderPane();
+        this.root.setTop(ui);
     }
 
     /**
-     * Can be called by other classes to update the UI
+     * handles the drawing of the UI
      */
-    public void update() {
+    @Override
+    public void render(StateGame state) {
+        ui.getChildren().clear();
 
+        VBox resources = new VBox();
+
+        Label labelMoney = new Label("Money: " + state.inventory.getMoney());
+        Label labelCorn = new Label("Corn: " + state.inventory.getCorn());
+        Label labelWheat = new Label("Wheat: " + state.inventory.getWheat());
+        resources.getChildren().addAll(labelMoney, labelCorn, labelWheat);
+        ui.setLeft(resources);
+
+        Label labelDay = new Label("Day: " + state.environment.getDay());
+        ui.setCenter(labelDay);
     }
 
 }
-

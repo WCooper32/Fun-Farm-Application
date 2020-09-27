@@ -5,6 +5,7 @@ import javafx.scene.layout.Pane;
 import main.engine.Grid;
 import main.engine.Manager;
 import main.sprites.Plot;
+import main.state.StateGame;
 
 /**
  * 1. Have different class/app for UI (money, date, etc.)
@@ -24,18 +25,13 @@ public class GameScreen extends Screen<Pane> {
             grid.addSprite(new Plot(), (i / 6 + 2) * 68, (i % 6 + 1) * 52);
         }
 
-        RenderLoop renderLoop = new RenderLoop();
-        renderLoop.start();
-
     }
 
-    private class RenderLoop extends AnimationTimer {
-        @Override
-        public void handle(long now) {
-            Pane frame = grid.render();
-            root.getChildren().clear();
-            root.getChildren().add(frame);
-        }
+    @Override
+    public void render(StateGame state) {
+        Pane frame = grid.render();
+        root.getChildren().clear();
+        root.getChildren().add(frame);
     }
 
 }

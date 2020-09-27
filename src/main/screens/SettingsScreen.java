@@ -153,14 +153,18 @@ public class SettingsScreen extends Screen<VBox> {
                         }
                     });
                 } else {
-                    manager.state.settings.initialized = true;
-                    manager.state.settings.name = textfieldName.getText();
-                    manager.state.settings.difficulty = ((StateSettings.Difficulty)
-                            toggleDifficulty.getSelectedToggle().getUserData()).getValue();
-                    manager.state.settings.season = ((StateSettings.Season) toggleSeason.
-                            getSelectedToggle().getUserData()).getValue();
-                    manager.state.settings.seed = ((StateSettings.Seed) toggleSeed.
-                            getSelectedToggle().getUserData()).getValue();
+                    manager.getStateGame().settings.initialized = true;
+                    manager.getStateGame().settings.name = tfName.getText();
+                    manager.getStateGame().settings.difficulty = 0; // TODO @Harrison please set the setting appropriatley using enums
+                    manager.getStateGame().settings.season = 0; // TODO @Harrison
+                    manager.getStateGame().settings.seed = 0; // TODO @Harrison
+
+                    if (manager.getStateGame().settings.difficulty == 0) {
+                        manager.getStateGame().inventory.setMoney(999);
+                    } else {
+                        manager.getStateGame().inventory.setMoney(100);
+                    }
+
                     manager.startGame();
                 }
             }

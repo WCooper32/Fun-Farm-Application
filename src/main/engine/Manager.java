@@ -1,5 +1,6 @@
 package main.engine;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -11,6 +12,8 @@ import main.screens.Screen;
 import main.screens.SettingsScreen;
 import main.screens.StartScreen;
 import main.state.StateGame;
+
+import java.util.ArrayList;
 
 /**
  * Entry point into application
@@ -31,12 +34,14 @@ public class Manager extends Application {
     private Stage primaryStage;
     private StackPane root;
     private StateGame state;
+    private ArrayList<Screen> screens;
 
     /**
-     * Removes all children from the root stack
+     * revmoves all children
      */
     private void resetScreen() {
         root.getChildren().clear();
+        screens.clear();
     }
 
     /**
@@ -46,6 +51,7 @@ public class Manager extends Application {
     private void addScreen(Screen screen) {
         Pane screenRoot = screen.getRoot();
         root.getChildren().add(screenRoot);
+        screens.add(screen);
     }
 
     /**
@@ -54,6 +60,7 @@ public class Manager extends Application {
     private void popScreen() {
         if (root.getChildren().size() != 0) {
             root.getChildren().remove(root.getChildren().size() - 1);
+            screens.remove(screens.size() - 1);
         }
     }
 
@@ -65,6 +72,7 @@ public class Manager extends Application {
     public void start(Stage stage) {
         primaryStage = stage;
         state = new StateGame();
+        screens = new ArrayList<>();
 
         // Create the primary stack pane which will show all the screens
         root = new StackPane();
@@ -79,6 +87,10 @@ public class Manager extends Application {
 
         // Add the start screen to the stack
         addScreen(new StartScreen(this));
+
+        // Start the render loop
+        RenderLoop renderLoop = new RenderLoop();
+        renderLoop.start();
     }
 
     /**
@@ -102,4 +114,13 @@ public class Manager extends Application {
         return state;
     }
 
+    private class RenderLoop extends AnimationTimer {
+        @Override
+        public void handle(long now) {
+            for (Screen screen : screens) {
+                screen.render(state);
+            }
+        }
+    }
 }
+

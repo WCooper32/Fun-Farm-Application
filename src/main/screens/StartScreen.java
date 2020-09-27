@@ -64,4 +64,5 @@ public class StartScreen extends Screen<VBox> {
         fadeTransition.play();
 
     }
+
 }
