@@ -69,8 +69,8 @@ public class Manager extends Application {
         // Create the primary stack pane which will show all the screens
         root = new StackPane();
         Scene scene = new Scene(root, 1280, 720);
-        scene.getStylesheets().addAll(
-                this.getClass().getResource("../css/style.css").toExternalForm());
+        scene.getStylesheets().addAll(this.getClass().
+                getResource("../css/style.css").toExternalForm());
 
         // Show the pane
         primaryStage.setScene(scene);
