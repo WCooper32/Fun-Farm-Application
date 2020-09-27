@@ -2,14 +2,26 @@ package main.state;
 
 public class StateGame {
 
-    public StateSettings settings;
-    public StateInventory inventory;
-    public StateEnvironment environment;
+    private StateSettings settings;
+    private StateInventory inventory;
+    private StateEnvironment environment;
 
     public StateGame() {
         settings = new StateSettings();
         inventory = new StateInventory();
         environment = new StateEnvironment();
+    }
+
+    public StateSettings getSettings() {
+        return settings;
+    }
+
+    public StateInventory getInventory() {
+        return inventory;
+    }
+
+    public StateEnvironment getEnvironment() {
+        return environment;
     }
 
 }

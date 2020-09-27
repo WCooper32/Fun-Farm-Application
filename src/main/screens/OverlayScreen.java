@@ -9,7 +9,7 @@ public class OverlayScreen extends Screen<GridPane> {
     public OverlayScreen(Manager manager) {
         super(new GridPane());
 
-        Label labelMoney = new Label("Money: " + manager.state.inventory.money);
+        Label labelMoney = new Label("Money: " + manager.getState().getInventory().getMoney());
         root.getChildren().add(labelMoney);
     }
 

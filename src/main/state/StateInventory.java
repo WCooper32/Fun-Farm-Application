@@ -2,6 +2,14 @@ package main.state;
 
 public class StateInventory {
 
-    public int money;
+    private int money;
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int input) {
+        money = input;
+    }
 
 }

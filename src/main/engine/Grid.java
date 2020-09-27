@@ -33,6 +33,10 @@ public class Grid {
         return sprites.remove(delSprite);
     }
 
+    public int getNumSprites() {
+        return numSprites;
+    }
+
     public Pane render() {
         Pane output = new Pane();
         for (Sprite<Pane> sprite : sprites) {

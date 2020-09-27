@@ -17,17 +17,30 @@ public class GridTests {
 
     private Grid grid;
     private Sprite<Pane> plot;
+    private Sprite<Pane> plot2;
+    private Sprite<Pane> plot3;
+
 
     @Before
     public void setup() {
         grid = new Grid();
         plot = new Plot();
+        plot2 = new Plot();
+        plot3 = new Plot();
     }
 
     @Test
     public void testAddRemoveSprite() {
         grid.addSprite(plot, 5, 5);
         assertTrue(grid.removeSprite(plot));
+    }
+
+    @Test
+    public void testGetNumSprites() {
+        grid.addSprite(plot, 5, 5);
+        grid.addSprite(plot2, 10, 10);
+        grid.addSprite(plot3, 15, 15);
+        assertEquals(3, grid.getNumSprites());
     }
 
     @Test
