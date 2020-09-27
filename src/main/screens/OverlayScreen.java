@@ -14,7 +14,6 @@ public class OverlayScreen extends Screen<BorderPane> {
         super(new BorderPane());
         this.ui = new BorderPane();
         this.root.setTop(ui);
-
     }
 
     /**

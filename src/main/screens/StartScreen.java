@@ -44,7 +44,7 @@ public class StartScreen extends Screen<VBox> {
         title.setEffect(ds);
 
         //Position
-        VBox.setMargin(title, new Insets(150,0,250,0));
+        VBox.setMargin(title, new Insets(150, 0, 250, 0));
         title.setPrefWidth(Double.MAX_VALUE);
         title.setAlignment(Pos.BASELINE_CENTER);
         root.getChildren().add(title);
@@ -52,7 +52,7 @@ public class StartScreen extends Screen<VBox> {
         //CLICK ANYWHERE
         Label click = new Label("Click Anywhere to Continue");
         click.setTextFill(Color.WHITE);
-        click.setFont(Font.font(null, FontWeight.BOLD,14));
+        click.setFont(Font.font(null, FontWeight.BOLD, 14));
         click.setPrefWidth(Double.MAX_VALUE);
         click.setAlignment(Pos.BASELINE_CENTER);
         root.getChildren().add(click);
