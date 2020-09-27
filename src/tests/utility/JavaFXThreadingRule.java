@@ -1,4 +1,4 @@
-package tests;
+package tests.utility;
 
 import java.util.concurrent.CountDownLatch;
 

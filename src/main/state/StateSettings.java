@@ -49,7 +49,7 @@ public class StateSettings {
         season = s;
     }
 
-    public int setStartingMoney() {
+    public int getStartingMoney() {
         if (difficulty == 3) {
             return 50;
         } else if (difficulty == 2) {

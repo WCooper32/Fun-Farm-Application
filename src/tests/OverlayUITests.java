@@ -9,12 +9,14 @@ import main.state.StateGame;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import tests.utility.JavaFXThreadingRule;
 
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-public class overlayUiTests {
+public class OverlayUITests {
     private static final int TIMEOUT = 200;
     @Rule
     public JavaFXThreadingRule javafxRule = new JavaFXThreadingRule();
@@ -37,9 +39,9 @@ public class overlayUiTests {
 
         VBox resources = new VBox();
 
-        Label labelMoney = new Label("Money: " + state.inventory.getMoney());
-        Label labelCorn = new Label("Corn: " + state.inventory.getCorn());
-        Label labelWheat = new Label("Wheat: " + state.inventory.getWheat());
+        Label labelMoney = new Label("Money: " + state.getInventory().getMoney());
+        Label labelCorn = new Label("Corn: " + state.getInventory().getCorn());
+        Label labelWheat = new Label("Wheat: " + state.getInventory().getWheat());
         resources.getChildren().addAll(labelMoney, labelCorn, labelWheat);
 
         ArrayList<Label> list = new ArrayList<>();
@@ -62,7 +64,7 @@ public class overlayUiTests {
                 }
             }
         }
-        assertEquals(isSame, true);
+        assertTrue(isSame);
     }
 
 

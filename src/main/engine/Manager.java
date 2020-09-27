@@ -39,7 +39,7 @@ public class Manager extends Application {
     /**
      * revmoves all children
      */
-    private void resetScreen() {
+    public void resetScreen() {
         root.getChildren().clear();
         screens.clear();
     }
@@ -48,7 +48,7 @@ public class Manager extends Application {
      * Adds the given screen to the root stack
      * @param screen the screen who's root we will use
      */
-    private void addScreen(Screen screen) {
+    public void addScreen(Screen screen) {
         Pane screenRoot = screen.getRoot();
         root.getChildren().add(screenRoot);
         screens.add(screen);
@@ -57,11 +57,12 @@ public class Manager extends Application {
     /**
      * Removes the most recently added child of the root
      */
-    private void popScreen() {
+    public Screen popScreen() {
         if (root.getChildren().size() != 0) {
             root.getChildren().remove(root.getChildren().size() - 1);
-            screens.remove(screens.size() - 1);
+            return screens.remove(screens.size() - 1);
         }
+        return null;
     }
 
     /**
@@ -102,7 +103,7 @@ public class Manager extends Application {
             addScreen(new SettingsScreen(this));
         } else {
             // Sets money based on difficulty
-            state.inventory.money = state.settings.setStartingMoney();
+            state.getInventory().setMoney(state.getSettings().getStartingMoney());
 
             resetScreen();
             addScreen(new GameScreen(this));

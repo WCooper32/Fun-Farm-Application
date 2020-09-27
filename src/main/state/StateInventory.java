@@ -35,4 +35,5 @@ public class StateInventory {
     public void setCorn(int set) {
         this.corn = set;
     }
+
 }
