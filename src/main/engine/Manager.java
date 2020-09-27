@@ -30,7 +30,7 @@ public class Manager extends Application {
 
     private Stage primaryStage;
     private StackPane root;
-    public StateGame state;
+    private StateGame state;
 
     /**
      * Removes all children from the root stack
@@ -85,7 +85,7 @@ public class Manager extends Application {
      * Start the game if settings are initialized. If not, ask for settings.
      */
     public void startGame() {
-        if (!state.settings.initialized) {
+        if (!state.getSettings().isInitialized()) {
             resetScreen();
             addScreen(new SettingsScreen(this));
         } else {
@@ -96,6 +96,10 @@ public class Manager extends Application {
             addScreen(new GameScreen(this));
             addScreen(new OverlayScreen(this));
         }
+    }
+
+    public StateGame getState() {
+        return state;
     }
 
 }

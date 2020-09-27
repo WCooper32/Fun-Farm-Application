@@ -2,12 +2,52 @@ package main.state;
 
 public class StateSettings {
 
-    public boolean initialized = false;
+    private boolean initialized = false;
 
-    public String name;
-    public int difficulty;
-    public int seed;
-    public int season;
+    private String name;
+    private int difficulty;
+    private int seed;
+    private int season;
+
+    public boolean isInitialized() {
+        return initialized;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getDifficulty() {
+        return difficulty;
+    }
+
+    public int getSeed() {
+        return seed;
+    }
+
+    public int getSeason() {
+        return season;
+    }
+
+    public void setInitialized(boolean b) {
+        initialized = b;
+    }
+
+    public void setName(String input) {
+        name = input;
+    }
+
+    public void setDifficulty(int dif) {
+        difficulty = dif;
+    }
+
+    public void setSeed(int s) {
+        seed = s;
+    }
+
+    public void setSeason(int s) {
+        season = s;
+    }
 
     public int setStartingMoney() {
         if (difficulty == 3) {

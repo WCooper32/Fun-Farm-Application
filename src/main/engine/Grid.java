@@ -5,18 +5,18 @@ import com.sun.javafx.geom.Vec3d;
 import javafx.scene.layout.Pane;
 import main.sprites.Sprite;
 
-import java.util.HashSet;
+import java.util.LinkedList;
 
 public class Grid {
 
     private int numSprites;
-    private HashSet<Sprite<Pane>> sprites;
+    private LinkedList<Sprite<Pane>> sprites;
 
     private Matrix3f transform;
 
     public Grid() {
         numSprites = 0;
-        sprites = new HashSet<>();
+        sprites = new LinkedList<>();
 
         transform = new Matrix3f();
         transform.setIdentity();
@@ -28,9 +28,13 @@ public class Grid {
         numSprites++;
     }
 
-    public void removeSprite(Sprite<Pane> delSprite) {
-        sprites.remove(delSprite);
+    public boolean removeSprite(Sprite<Pane> delSprite) {
         numSprites--;
+        return sprites.remove(delSprite);
+    }
+
+    public int getNumSprites() {
+        return numSprites;
     }
 
     public Pane render() {
@@ -43,7 +47,7 @@ public class Grid {
             // Get Bounds
             Vec3d size = sprite.getSize();
             size.add(position);
-            size.sub(new Vec3d(0,0,1));
+            size.sub(new Vec3d(0, 0, 1));
 
             // Transform Position and Bounds
             position = Util.transformVector(position, transform);
