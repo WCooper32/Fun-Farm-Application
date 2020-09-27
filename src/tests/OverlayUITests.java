@@ -9,14 +9,14 @@ import main.state.StateGame;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-
-import javax.swing.plaf.nimbus.State;
+import tests.utility.JavaFXThreadingRule;
 
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-public class overlayUiTests {
+public class OverlayUITests {
     private static final int TIMEOUT = 200;
     @Rule
     public JavaFXThreadingRule javafxRule = new JavaFXThreadingRule();
@@ -64,7 +64,7 @@ public class overlayUiTests {
                 }
             }
         }
-        assertEquals(isSame, true);
+        assertTrue(isSame);
     }
 
 

@@ -111,16 +111,16 @@ public class SettingsScreen extends Screen<VBox> {
                         }
                     });
                 } else {
-                    manager.getStateGame().settings.initialized = true;
-                    manager.getStateGame().settings.name = tfName.getText();
-                    manager.getStateGame().settings.difficulty = 0; // TODO @Harrison please set the setting appropriatley using enums
-                    manager.getStateGame().settings.season = 0; // TODO @Harrison
-                    manager.getStateGame().settings.seed = 0; // TODO @Harrison
+                    manager.getState().settings.initialized = true;
+                    manager.getState().settings.name = tfName.getText();
+                    manager.getState().settings.difficulty = 0; // TODO @Harrison please set the setting appropriatley using enums
+                    manager.getState().settings.season = 0; // TODO @Harrison
+                    manager.getState().settings.seed = 0; // TODO @Harrison
 
-                    if (manager.getStateGame().settings.difficulty == 0) {
-                        manager.getStateGame().inventory.setMoney(999);
+                    if (manager.getState().settings.difficulty == 0) {
+                        manager.getState().inventory.setMoney(999);
                     } else {
-                        manager.getStateGame().inventory.setMoney(100);
+                        manager.getState().inventory.setMoney(100);
                     }
 
                     manager.startGame();
