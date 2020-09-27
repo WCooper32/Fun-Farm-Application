@@ -39,9 +39,9 @@ public class OverlayUITests {
 
         VBox resources = new VBox();
 
-        Label labelMoney = new Label("Money: " + state.inventory.getMoney());
-        Label labelCorn = new Label("Corn: " + state.inventory.getCorn());
-        Label labelWheat = new Label("Wheat: " + state.inventory.getWheat());
+        Label labelMoney = new Label("Money: " + state.getInventory().getMoney());
+        Label labelCorn = new Label("Corn: " + state.getInventory().getCorn());
+        Label labelWheat = new Label("Wheat: " + state.getInventory().getWheat());
         resources.getChildren().addAll(labelMoney, labelCorn, labelWheat);
 
         ArrayList<Label> list = new ArrayList<>();
