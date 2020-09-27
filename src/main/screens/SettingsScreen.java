@@ -114,7 +114,7 @@ public class SettingsScreen extends Screen<VBox> {
         Button start = new Button("Start Game");
         start.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event) { // TODO @Harrison check for unselected options
+            public void handle(ActionEvent event) {
                 if (textfieldName.getText().trim().equals("")) {  // empty, blank (?), or null
                     System.out.println("Handle invalid name");
                     EventQueue.invokeLater(new Runnable() {
