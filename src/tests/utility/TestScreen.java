@@ -1,7 +1,6 @@
 package tests.utility;
 
 import javafx.scene.layout.Pane;
-import main.engine.Manager;
 import main.screens.Screen;
 import main.state.StateGame;
 

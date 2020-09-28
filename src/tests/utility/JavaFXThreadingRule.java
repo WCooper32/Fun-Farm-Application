@@ -50,7 +50,7 @@ public class JavaFXThreadingRule implements TestRule {
         @Override
         public void evaluate() throws Throwable {
 
-            if(!jfxIsSetup) {
+            if (!jfxIsSetup) {
                 setupJavaFX();
 
                 jfxIsSetup = true;
@@ -67,13 +67,13 @@ public class JavaFXThreadingRule implements TestRule {
                         rethrownException = e;
                     }
                     countDownLatch.countDown();
-                }});
+                } });
 
             countDownLatch.await();
 
             // if an exception was thrown by the statement during evaluation,
             // then re-throw it to fail the test
-            if(rethrownException != null) {
+            if (rethrownException != null) {
                 throw rethrownException;
             }
         }
@@ -95,7 +95,8 @@ public class JavaFXThreadingRule implements TestRule {
 
             System.out.println("javafx initialising...");
             latch.await();
-            System.out.println("javafx is initialised in " + (System.currentTimeMillis() - timeMillis) + "ms");
+            System.out.println("javafx is initialised in "
+                    + (System.currentTimeMillis() - timeMillis) + "ms");
         }
 
     }

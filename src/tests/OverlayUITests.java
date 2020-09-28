@@ -13,7 +13,6 @@ import tests.utility.JavaFXThreadingRule;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class OverlayUITests {
@@ -22,8 +21,8 @@ public class OverlayUITests {
     public JavaFXThreadingRule javafxRule = new JavaFXThreadingRule();
     //this rule allows JavaFX objects to be made in these tests
 
-    public Manager manager;
-    public OverlayScreen mainScreen;
+    private Manager manager;
+    private OverlayScreen mainScreen;
     private StateGame state;
 
     @Before
@@ -48,7 +47,8 @@ public class OverlayUITests {
         list.add(labelMoney);
         list.add(labelCorn);
         list.add(labelWheat);
-        VBox actualResources = (VBox) ((BorderPane)((BorderPane)mainScreen.getRoot()).getTop()).getLeft();
+        VBox actualResources = (VBox) ((BorderPane) ((BorderPane) mainScreen.
+                getRoot()).getTop()).getLeft();
 
         boolean isSame = true;
 

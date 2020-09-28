@@ -56,6 +56,7 @@ public class Manager extends Application {
 
     /**
      * Removes the most recently added child of the root
+     * @return the screen on top or null if it does not exist
      */
     public Screen popScreen() {
         if (root.getChildren().size() != 0) {
