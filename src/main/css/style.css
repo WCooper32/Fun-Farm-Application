@@ -1,0 +1,15 @@
+#startBackground {
+    -fx-background-image: url("../../assets/background.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 1920 1080;
+    -fx-background-position: center center;
+}
+
+#settings {
+    -fx-background-color: #fff2e6;
+}
+
+#plot{
+    -fx-background-image: url("../../assets/plot.png");
+    -fx-background-position: center center;
+}
